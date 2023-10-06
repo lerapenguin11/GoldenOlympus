@@ -3,7 +3,9 @@ package com.example.goldenolympus
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.goldenolympus.databinding.ActivityMainBinding
+import com.example.goldenolympus.presentation.story.FirstFragment
 import com.example.goldenolympus.utilits.APP_ACTIVITY
+import com.example.goldenolympus.utilits.replaceFragmentMain
 import com.example.goldenolympus.utilits.setStatusBarGradiantMain
 
 class MainActivity : AppCompatActivity() {
@@ -14,5 +16,7 @@ class MainActivity : AppCompatActivity() {
         APP_ACTIVITY = this
         setContentView(binding.root)
         setStatusBarGradiantMain(this)
+
+        replaceFragmentMain(FirstFragment())
     }
 }
