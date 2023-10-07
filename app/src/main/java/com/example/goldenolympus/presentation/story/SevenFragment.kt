@@ -10,10 +10,13 @@ import com.example.goldenolympus.databinding.FragmentSevenBinding
 import com.example.goldenolympus.databinding.FragmentSixthBinding
 import com.example.goldenolympus.presentation.ui.MenuFragment
 import com.example.goldenolympus.utilits.getStory
+import com.example.goldenolympus.viewmodel.SettingsViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SevenFragment : Fragment() {
     private var _binding : FragmentSevenBinding? = null
     private val binding get() = _binding!!
+    private val viewModel by viewModel<SettingsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +26,8 @@ class SevenFragment : Fragment() {
         _binding = FragmentSevenBinding.inflate(inflater, container, false)
 
         getStory(3000L, MenuFragment())
+
+        viewModel.getCode(1)
 
         return binding.root
     }
