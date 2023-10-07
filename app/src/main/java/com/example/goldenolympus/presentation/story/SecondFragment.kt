@@ -5,10 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.goldenolympus.R
-import com.example.goldenolympus.databinding.FragmentFirstBinding
 import com.example.goldenolympus.databinding.FragmentSecondBinding
-import com.example.goldenolympus.utilits.replaceFragmentMain
+import com.example.goldenolympus.utilits.getStory
 
 class SecondFragment : Fragment() {
     private var _binding : FragmentSecondBinding? = null
@@ -20,6 +18,8 @@ class SecondFragment : Fragment() {
     ): View? {
 
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
+
+        getStory(3000L, ThirdFragment())
 
         return binding.root
     }

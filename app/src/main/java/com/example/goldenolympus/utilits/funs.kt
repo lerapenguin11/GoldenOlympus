@@ -4,11 +4,14 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Activity
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import com.example.goldenolympus.R
+import com.example.goldenolympus.presentation.story.ThirdFragment
 
 fun replaceFragmentMain(fagmnt: Fragment, aStack: Boolean = true) {
     if (aStack) {
@@ -35,4 +38,11 @@ fun setStatusBarGradiantMain(activity: Activity) {
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE or View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
     }
+}
+
+fun getStory(i: Long, fragment: Fragment) {
+    Handler(Looper.getMainLooper()).postDelayed({
+        //getCheck(code)
+        replaceFragmentMain(fragment)
+    }, i)
 }

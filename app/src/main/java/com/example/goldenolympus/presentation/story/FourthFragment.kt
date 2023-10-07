@@ -9,6 +9,7 @@ import com.example.goldenolympus.R
 import com.example.goldenolympus.databinding.FragmentFirstBinding
 import com.example.goldenolympus.databinding.FragmentFourthBinding
 import com.example.goldenolympus.databinding.FragmentSecondBinding
+import com.example.goldenolympus.utilits.getStory
 
 class FourthFragment : Fragment() {
     private var _binding : FragmentFourthBinding? = null
@@ -20,6 +21,8 @@ class FourthFragment : Fragment() {
     ): View? {
 
         _binding = FragmentFourthBinding.inflate(inflater, container, false)
+
+        getStory(3000L, FifthFragment())
 
         return binding.root
     }
