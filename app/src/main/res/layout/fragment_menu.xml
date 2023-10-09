@@ -32,23 +32,12 @@
 
     <ImageView
         android:id="@+id/ic_menu1"
-        android:layout_width="218dp"
-        android:layout_height="292dp"
+        android:layout_width="258dp"
+        android:layout_height="392dp"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_menu1"
-        android:scaleType="fitXY"
-        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ic_info" />
-
-    <ImageView
-        android:id="@+id/ic_menu2"
-        android:layout_width="218dp"
-        android:layout_height="292dp"
-        android:scaleType="fitXY"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_menu2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ic_menu1" />
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

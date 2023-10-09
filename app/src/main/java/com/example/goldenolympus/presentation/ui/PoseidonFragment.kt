@@ -18,6 +18,7 @@ import com.example.goldenolympus.R
 import com.example.goldenolympus.databinding.FragmentPoseidonBinding
 import com.example.goldenolympus.presentation.mazing.FingerLine
 import com.example.goldenolympus.presentation.mazing.MazeView
+import com.example.goldenolympus.utilits.replaceFragmentMain
 import java.util.*
 
 class PoseidonFragment : Fragment() {
@@ -50,6 +51,9 @@ class PoseidonFragment : Fragment() {
 
         binding.newMazeButton.setOnClickListener(View.OnClickListener { createMaze() })
         binding.newMazeButton.performClick()
+
+
+        binding.icArrow.setOnClickListener { replaceFragmentMain(MenuFragment()) }
 
 
         return binding.root
