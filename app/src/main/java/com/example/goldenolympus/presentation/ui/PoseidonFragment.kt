@@ -70,8 +70,21 @@ class PoseidonFragment : Fragment(){
         binding.newMazeButton.setOnClickListener(View.OnClickListener {
             val sharedPreferences = context?.getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
             val valueInt = sharedPreferences?.getInt("keys", 0)
-            binding.tvCountCoin.text = valueInt.toString()
-            createMaze()
+            if (valueInt!! < 10){
+                binding.tvCountCoin.text = valueInt.toString()
+                createMaze()
+            } else{
+                pauseTimer()
+                val bundle = Bundle()
+                bundle.putInt("coin", valueInt)
+                bundle.putString("time", binding.tvSec.text.toString())
+                val fragment = WinFragment()
+                fragment.arguments = bundle
+                val fragmentManager = requireActivity().supportFragmentManager
+                fragmentManager.beginTransaction()
+                    .replace(com.example.goldenolympus.R.id.main_layout, fragment)
+                    .commit()
+            }
         })
 
         binding.newMazeButton.performClick()
@@ -119,12 +132,6 @@ class PoseidonFragment : Fragment(){
             startTimer()
         }
     }
-
-    /*override fun onPause() {
-        super.onPause()
-        wasRunning = isRunning
-        pauseTimer()
-    }*/
 
     private fun resetTimer() {
         isRunning = false
