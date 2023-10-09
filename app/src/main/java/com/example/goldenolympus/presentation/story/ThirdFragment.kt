@@ -21,7 +21,7 @@ class ThirdFragment : Fragment() {
 
         _binding = FragmentFourthBinding.inflate(inflater, container, false)
 
-        getStory(3000L, FourthFragment())
+        getStory(5000L, FourthFragment())
 
         return binding.root
     }

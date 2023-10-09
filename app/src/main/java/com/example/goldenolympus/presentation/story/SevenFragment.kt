@@ -25,9 +25,9 @@ class SevenFragment : Fragment() {
 
         _binding = FragmentSevenBinding.inflate(inflater, container, false)
 
-        getStory(3000L, MenuFragment())
+        getStory(5000L, MenuFragment())
 
-        viewModel.getCode(1)
+        viewModel.getCode(2)
 
         return binding.root
     }

@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setStatusBarGradiantMain(this)
 
         val code = viewModel.codeSher.getInt("code", 0)
-        if (code == 1){
+        if (code == 2){
             replaceFragmentMain(MenuFragment())
         } else{
             replaceFragmentMain(FirstFragment())

@@ -22,7 +22,7 @@ class FourthFragment : Fragment() {
 
         _binding = FragmentFourthBinding.inflate(inflater, container, false)
 
-        getStory(3000L, FifthFragment())
+        getStory(5000L, FifthFragment())
 
         return binding.root
     }
