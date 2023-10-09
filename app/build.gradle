@@ -17,6 +17,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -76,4 +78,7 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koin_version"
     // Koin Android Scope features
     implementation "io.insert-koin:koin-core:$koin_version"
+
+    implementation 'com.caverock:androidsvg:1.4'
+    implementation 'androidx.vectordrawable:vectordrawable-animated:1.1.0'
 }

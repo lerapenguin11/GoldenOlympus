@@ -10,6 +10,7 @@ import com.example.goldenolympus.utilits.replaceFragmentMain
 import com.example.goldenolympus.utilits.setStatusBarGradiantMain
 import com.example.goldenolympus.viewmodel.SettingsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
