@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
 import android.os.Build
+import android.os.Bundle
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -22,6 +23,8 @@ class FingerLine : View {
     var solutionCellsVisited = 0
     private var solved: ArrayList<Boolean>? = null
     private var solvedMaze = false
+    val sharedPreferences = context?.getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
+    val editor = sharedPreferences?.edit()
 
     constructor(context: Context?) : this(context, null) {
         init()
@@ -83,9 +86,12 @@ class FingerLine : View {
             if (xInCell && yInCell) {
                 solved!![i] = true
                 if (!solved!!.contains(false) && !solvedMaze) {
-                    val poseidonFragment = PoseidonFragment()
-                    //poseidonFragment.startGameSolvedAnimation()
-                    Toast.makeText(this.context, R.string.athena, Toast.LENGTH_SHORT).show()
+                    val sharedPreferences = context?.getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
+                    var valueInt = sharedPreferences?.getInt("keys", 0)
+                    valueInt = valueInt!! + 1
+                    editor?.putInt("keys", valueInt)
+                    editor?.apply()
+                    Toast.makeText(this.context, "Win!", Toast.LENGTH_SHORT).show()
                     solvedMaze = true
                     return true // not sure it this line is necessary
                 }

@@ -1,36 +1,29 @@
 package com.example.goldenolympus.presentation.ui
 
 import android.annotation.SuppressLint
-import android.graphics.*
-import android.os.Build
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.widget.ImageView
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.example.goldenolympus.R
 import com.example.goldenolympus.databinding.FragmentPoseidonBinding
 import com.example.goldenolympus.presentation.mazing.FingerLine
 import com.example.goldenolympus.presentation.mazing.MazeView
 import com.example.goldenolympus.utilits.replaceFragmentMain
 import java.util.*
 
-class PoseidonFragment : Fragment() {
+class PoseidonFragment : Fragment(){
     private var _binding : FragmentPoseidonBinding? = null
     private val binding get() = _binding!!
     private var seconds = 0
     private var isRunning = false
     private var wasRunning = false
-
     private lateinit var handler : Handler
     private lateinit var runnable: Runnable
+    private var count = 0
 
     enum class Color {
         WHITE, GRAY, BLACK
@@ -70,9 +63,21 @@ class PoseidonFragment : Fragment() {
         params.height = Math.floor(displaymetrics.heightPixels * 0.7).toInt()
         binding.mazeWrapper.setLayoutParams(params)
 
-        binding.newMazeButton.setOnClickListener(View.OnClickListener { createMaze() })
+        binding.newMazeButton.setOnClickListener(View.OnClickListener {
+            val sharedPreferences = context?.getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
+            val valueInt = sharedPreferences?.getInt("keys", 0)
+            binding.tvCountCoin.text = valueInt.toString()
+            createMaze()
+        })
+
         binding.newMazeButton.performClick()
-        binding.icArrow.setOnClickListener { replaceFragmentMain(MenuFragment()) }
+        binding.icArrow.setOnClickListener {
+            val sharedPreferences = context?.getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
+            val editor = sharedPreferences?.edit()
+            editor?.clear()
+            editor?.apply()
+            replaceFragmentMain(MenuFragment())
+        }
 
         return binding.root
     }
@@ -144,6 +149,7 @@ class PoseidonFragment : Fragment() {
         binding.mazeWrapper.addView(mMazeView)
         mFingerLine = FingerLine(requireContext(), null, solutionAreas)
         binding.mazeWrapper.addView(mFingerLine)
+
         val startCellArrowX =
             solutionAreas[mMazeView!!.lengthOfSolutionPath - 1][0] + 12 + FAT_FINGERS_MARGIN
         val startCellArrowY =

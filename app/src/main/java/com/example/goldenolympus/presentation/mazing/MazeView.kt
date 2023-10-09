@@ -42,18 +42,7 @@ class MazeView : View {
     }
 
     private fun init() {
-        // Create the paint brush
         mazePaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        val gradientDrawable = GradientDrawable(
-            GradientDrawable.Orientation.LEFT_RIGHT,
-            intArrayOf(Color.RED, Color.YELLOW, Color.GREEN)
-        )
-        //mazePaint!!.color = ContextCompat.getColor(context, gradientDrawable)
-        /*mazePaint.shader = LinearGradient(
-            startX, startY, endX, endY, // координаты начала и конца градиента
-            startColor, endColor, // цвета начала и конца градиента
-            Shader.TileMode.CLAMP // режим заливки градиента
-        )*/
         mazePaint!!.shader = LinearGradient(104f, 52f, 0f, 52f, Color.parseColor("#ACF0FF"),
             Color.parseColor("#0073DE"), Shader.TileMode.MIRROR)
         mazePaint!!.style = Paint.Style.STROKE
@@ -70,7 +59,6 @@ class MazeView : View {
         cellWidth = screenWidth / mazeSize
         cellHeight = cellWidth
 
-        // Create 2 2-dimensional arrays to keep the vertical and the horizontal lines of the MazeView
         verticalLines = Array(mazeSize) { BooleanArray(mazeSize + 1) }
         horizontalLines = Array(mazeSize + 1) {
             BooleanArray(
@@ -83,19 +71,14 @@ class MazeView : View {
         for (j in 0 until mazeSize + 1) {
             Arrays.fill(horizontalLines[j], Boolean.TRUE)
         }
-        // Break the starting wall of the maze
         horizontalLines[mazeSize][0] = false
 
-        // The maze starts at the left-bottom corner of the screen
         val graphStartKey = (graph!!.size - Math.sqrt(graph!!.size.toDouble())).toInt()
 
         // Declare the first cell of the maze as visited
         graph!!.V[graphStartKey]!!.visited = true
         MazeBuilder.carveWay(graph!!, graph!!.V[graphStartKey]!!, this)
 
-        // Improvement of the maze: remove a few random walls
-        // to make the maze more confusing.
-        // Choose randomly a few walls and break those walls
         val rand = Random()
         var holes = 0
         while (holes < Math.floor(Math.pow(fractionOfWallsToRemove * mazeSize, 2.0))) {
@@ -111,11 +94,8 @@ class MazeView : View {
         listOfSolutionVertecesKeys = LongestPathFinder.findLongestPath(graph!!).filterNotNull().toTypedArray()
         lengthOfSolutionPath = listOfSolutionVertecesKeys.size
 
-        // Break the ending wall of the maze
-        // get the end vertex key
         val endKey = listOfSolutionVertecesKeys[0]
 
-        // check if it's vertical or horizontal
         val horizontalEnd =
             if (endKey < mazeSize || endKey >= mazeSize * (mazeSize - 1)) true else false
         if (horizontalEnd) {
