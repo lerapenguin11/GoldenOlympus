@@ -40,13 +40,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView3">
 
-        <TextView
+        <com.example.goldenolympus.custom.GradientTextViewYellow
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/jost_bold_italic"
             android:text="@string/fourth_text"
-            android:textColor="@color/color2"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

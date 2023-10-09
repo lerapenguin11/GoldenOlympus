@@ -34,14 +34,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.1" />
 
-        <TextView
+        <com.example.goldenolympus.custom.GradientTextViewYellow
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:fontFamily="@font/arewinderdemi"
             android:text="@string/pause"
-            android:textColor="@color/color2"
             android:textSize="72sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

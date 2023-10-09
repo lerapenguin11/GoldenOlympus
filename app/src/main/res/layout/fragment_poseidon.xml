@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.example.goldenolympus.custom.GradientTextViewBlue
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +36,6 @@
             android:gravity="center_horizontal"
             android:text="@string/wrath_of_nthe_sea"
             android:textAllCaps="true"
-            android:textColor="#ACF0FF"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
