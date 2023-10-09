@@ -54,7 +54,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView2" />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/ic_pause"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
@@ -97,7 +97,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="00:35" />
+            android:text="@string/_00_00" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
