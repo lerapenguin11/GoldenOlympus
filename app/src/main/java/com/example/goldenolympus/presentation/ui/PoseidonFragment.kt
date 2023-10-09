@@ -1,14 +1,17 @@
 package com.example.goldenolympus.presentation.ui
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.util.DisplayMetrics
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import android.R
+import android.view.*
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import com.example.goldenolympus.databinding.FragmentPoseidonBinding
 import com.example.goldenolympus.presentation.mazing.FingerLine
 import com.example.goldenolympus.presentation.mazing.MazeView
@@ -57,6 +60,7 @@ class PoseidonFragment : Fragment(){
 
         binding.icPause.setOnClickListener {
             pauseTimer()
+            showDialogPause()
         }
 
         val params: ViewGroup.LayoutParams = binding.mazeWrapper.getLayoutParams()
@@ -82,6 +86,33 @@ class PoseidonFragment : Fragment(){
         return binding.root
     }
 
+    private fun showDialogPause() {
+        val dialog = Dialog(requireContext(), R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(com.example.goldenolympus.R.layout.full_screen_pause)
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog.window?.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        dialog.window?.statusBarColor = ContextCompat.getColor(requireContext(), android.R.color.transparent)
+
+        val time : TextView = dialog.findViewById(com.example.goldenolympus.R.id.tv_sec)
+        val btContinue : ConstraintLayout = dialog.findViewById(com.example.goldenolympus.R.id.bt_continue)
+        val btMenu : ConstraintLayout = dialog.findViewById(com.example.goldenolympus.R.id.bt_menu)
+
+        time.text = binding.tvSec.text
+
+        dialog.show()
+
+        btMenu.setOnClickListener {
+            replaceFragmentMain(MenuFragment())
+            dialog.cancel()
+        }
+
+        btContinue.setOnClickListener {
+            startTimer()
+            dialog.cancel()
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         if (wasRunning) {
@@ -89,10 +120,18 @@ class PoseidonFragment : Fragment(){
         }
     }
 
-    override fun onPause() {
+    /*override fun onPause() {
         super.onPause()
         wasRunning = isRunning
         pauseTimer()
+    }*/
+
+    private fun resetTimer() {
+        isRunning = false
+        seconds = 0
+        handler.removeCallbacks(runnable)
+        binding.icPause.isEnabled = false
+        binding.tvSec.text = formatTime(seconds)
     }
 
     private fun startTimer() {

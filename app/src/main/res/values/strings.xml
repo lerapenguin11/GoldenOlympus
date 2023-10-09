@@ -23,4 +23,7 @@
     <string name="_00_00">00:00</string>
     <string name="_10">/10</string>
     <string name="_0">0</string>
+    <string name="pause">Pause</string>
+    <string name="continue_">continue</string>
+    <string name="main_menu">MAIN MENU</string>
 </resources>
