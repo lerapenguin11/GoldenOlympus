@@ -4,11 +4,13 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
+import android.os.Build
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.NonNull
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.example.goldenolympus.R
 import com.example.goldenolympus.presentation.ui.PoseidonFragment
@@ -41,7 +43,7 @@ class FingerLine : View {
         // Create the paint brush
         mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mPaint!!.style = Paint.Style.STROKE
-        mPaint!!.color = ContextCompat.getColor(context, R.color.color2)
+        mPaint!!.color = ContextCompat.getColor(context, R.color.color3)
         mPaint!!.strokeCap = Paint.Cap.ROUND
         mPaint!!.strokeJoin = Paint.Join.ROUND
         mPaint!!.strokeWidth = 10f
@@ -82,7 +84,7 @@ class FingerLine : View {
                 solved!![i] = true
                 if (!solved!!.contains(false) && !solvedMaze) {
                     val poseidonFragment = PoseidonFragment()
-                    poseidonFragment.startGameSolvedAnimation()
+                    //poseidonFragment.startGameSolvedAnimation()
                     Toast.makeText(this.context, R.string.athena, Toast.LENGTH_SHORT).show()
                     solvedMaze = true
                     return true // not sure it this line is necessary

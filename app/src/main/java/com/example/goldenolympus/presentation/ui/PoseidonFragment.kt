@@ -2,6 +2,7 @@ package com.example.goldenolympus.presentation.ui
 
 import android.annotation.SuppressLint
 import android.graphics.*
+import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -11,8 +12,9 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.widget.ImageView
-import android.widget.Toolbar
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.example.goldenolympus.R
 import com.example.goldenolympus.databinding.FragmentPoseidonBinding
 import com.example.goldenolympus.presentation.mazing.FingerLine
 import com.example.goldenolympus.presentation.mazing.MazeView
@@ -31,19 +33,20 @@ class PoseidonFragment : Fragment() {
     var mazeSize = 0
     var displaymetrics = DisplayMetrics()
     val PADDING = 64
-    val FAT_FINGERS_MARGIN = 25
+    val FAT_FINGERS_MARGIN = 60
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint("ClickableViewAccessibility", "UseRequireInsteadOfGet")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+        requireActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics)
         _binding = FragmentPoseidonBinding.inflate(inflater, container, false)
 
-        val params = binding.mazeWrapper.layoutParams
+        val params: ViewGroup.LayoutParams = binding.mazeWrapper.getLayoutParams()
         params.height = Math.floor(displaymetrics.heightPixels * 0.7).toInt()
-        binding.mazeWrapper.layoutParams = params
+        binding.mazeWrapper.setLayoutParams(params)
 
         binding.newMazeButton.setOnClickListener(View.OnClickListener { createMaze() })
         binding.newMazeButton.performClick()
@@ -117,9 +120,6 @@ class PoseidonFragment : Fragment() {
         binding.strawberry.setVisibility(View.VISIBLE)
     }
 
-
-    // Function to remove a specific Integer from Integer array
-    // and return a new Integer array without the specified value
     fun removeValueFromArray(array: Array<Int>, value: Int): Array<Int?> {
         val arrayList = ArrayList(Arrays.asList(*array))
         arrayList.removeAt(arrayList.indexOf(value))
@@ -134,6 +134,7 @@ class PoseidonFragment : Fragment() {
         animation.interpolator = LinearInterpolator()
         animation.repeatCount = 3
         animation.repeatMode = Animation.REVERSE
-        binding.strawberry.startAnimation(animation)
+
+        //binding.strawberry.startAnimation(animation)
     }
 }

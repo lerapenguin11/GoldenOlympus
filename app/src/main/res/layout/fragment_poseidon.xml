@@ -5,9 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
     tools:context=".presentation.ui.PoseidonFragment">
 
-    <ImageView
+   <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,13 +19,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!--<ImageView
-        android:id="@+id/playerImageView"
-        android:layout_width="20dp"
-        android:layout_height="18dp"
-        android:src="@drawable/ic_player_animated"
-        app:layout_constraintStart_toStartOf="@+id/svgImageView" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -53,7 +48,7 @@
             android:layout_width="44dp"
             android:layout_height="36dp"
             android:layout_marginStart="40dp"
-            android:src="@drawable/ic_arrow"
+            android:src="@drawable/ic_arrow_l"
             app:layout_constraintBottom_toBottomOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView2" />
@@ -111,14 +106,18 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:layout_marginTop="30dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+        tools:ignore="ObsoleteLayoutParam">
 
         <ImageView
             android:id="@+id/arrow"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/ic_player"
+            android:src="@drawable/ic_arrow"
             android:visibility="invisible" />
 
         <ImageView
@@ -126,11 +125,9 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:rotation="315"
-            android:src="@drawable/ic_coin"
+            android:src="@drawable/ic_bt"
             android:visibility="invisible" />
-
     </FrameLayout>
-
 
     <ImageView
         android:id="@+id/newMazeButton"
@@ -139,6 +136,7 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_bt"
+        android:layout_gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

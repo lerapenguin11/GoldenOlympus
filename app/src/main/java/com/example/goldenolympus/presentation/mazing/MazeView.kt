@@ -2,8 +2,8 @@ package com.example.goldenolympus.presentation.mazing
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Paint
+import android.graphics.*
+import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.View
@@ -44,7 +44,18 @@ class MazeView : View {
     private fun init() {
         // Create the paint brush
         mazePaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        mazePaint!!.color = ContextCompat.getColor(context, R.color.color1)
+        val gradientDrawable = GradientDrawable(
+            GradientDrawable.Orientation.LEFT_RIGHT,
+            intArrayOf(Color.RED, Color.YELLOW, Color.GREEN)
+        )
+        //mazePaint!!.color = ContextCompat.getColor(context, gradientDrawable)
+        /*mazePaint.shader = LinearGradient(
+            startX, startY, endX, endY, // координаты начала и конца градиента
+            startColor, endColor, // цвета начала и конца градиента
+            Shader.TileMode.CLAMP // режим заливки градиента
+        )*/
+        mazePaint!!.shader = LinearGradient(104f, 52f, 0f, 52f, Color.parseColor("#ACF0FF"),
+            Color.parseColor("#0073DE"), Shader.TileMode.MIRROR)
         mazePaint!!.style = Paint.Style.STROKE
         mazePaint!!.strokeCap = Paint.Cap.ROUND
         mazePaint!!.strokeJoin = Paint.Join.ROUND
